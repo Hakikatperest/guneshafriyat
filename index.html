@@ -102,11 +102,9 @@
       opacity: .5;
     }
     @media (pointer: coarse) {
-      .cursor, .cursor-ring {
-        display: none;
-      }
+      .cursor, .cursor-ring { display: none; }
     }
-    /* navbar - FIXED overflow & sizing */
+    /* navbar */
     nav {
       position: fixed;
       top: 0;
@@ -198,17 +196,9 @@
       border-radius: 99px;
       transition: all 0.4s var(--ease);
     }
-    .hamburger.open span:nth-child(1) {
-      transform: translateY(8px) rotate(45deg);
-    }
-    .hamburger.open span:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-    .hamburger.open span:nth-child(3) {
-      transform: translateY(-8px) rotate(-45deg);
-    }
-    /* mobile drawer */
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .m-overlay {
       display: none;
       position: fixed;
@@ -218,9 +208,7 @@
       opacity: 0;
       transition: opacity 0.35s;
     }
-    .m-overlay.open {
-      opacity: 1;
-    }
+    .m-overlay.open { opacity: 1; }
     .m-drawer {
       position: fixed;
       top: 0;
@@ -236,9 +224,7 @@
       transition: right 0.5s var(--ease);
       border-left: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .m-drawer.open {
-      right: 0;
-    }
+    .m-drawer.open { right: 0; }
     .m-drawer a {
       font-family: var(--f-display);
       font-size: 1.6rem;
@@ -246,10 +232,8 @@
       color: var(--sand);
       transition: color 0.2s;
     }
-    .m-drawer a:hover {
-      color: var(--rust-lite);
-    }
-    /* hero fixes */
+    .m-drawer a:hover { color: var(--rust-lite); }
+    /* hero */
     .hero {
       position: relative;
       height: 100vh;
@@ -271,12 +255,8 @@
       animation: heroZoom 14s var(--ease) infinite alternate;
     }
     @keyframes heroZoom {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.08);
-      }
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
     }
     .hero-overlay {
       position: absolute;
@@ -300,25 +280,6 @@
       padding: 0 5%;
       max-width: 780px;
     }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .hero-eyebrow-line {
-      display: block;
-      width: 32px;
-      height: 2px;
-      background: var(--rust);
-    }
-    .hero-eyebrow span {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.7);
-    }
     .hero h1 {
       font-family: var(--f-display);
       font-size: clamp(2.4rem, 5.5vw, 4.2rem);
@@ -340,7 +301,6 @@
       color: rgba(255, 255, 255, 0.75);
       max-width: 540px;
       margin-bottom: 32px;
-      line-height: 1.6;
     }
     .hero-ctas {
       display: flex;
@@ -373,7 +333,6 @@
       padding: 12px 28px;
       border-radius: 99px;
       font-weight: 600;
-      font-size: 0.85rem;
       transition: all 0.3s var(--ease);
     }
     .cta-ghost:hover {
@@ -400,15 +359,7 @@
       color: var(--white);
       line-height: 1;
     }
-    .hero-stat-num span {
-      color: var(--amber);
-    }
-    .hero-stat-label {
-      font-size: 0.6rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-    }
+    .hero-stat-num span { color: var(--amber); }
     .scroll-cue {
       position: absolute;
       bottom: 140px;
@@ -421,7 +372,6 @@
       gap: 6px;
       color: rgba(255, 255, 255, 0.5);
       font-size: 0.6rem;
-      letter-spacing: 2px;
     }
     .scroll-cue-wheel {
       width: 20px;
@@ -440,14 +390,8 @@
       animation: wheelScroll 2s infinite;
     }
     @keyframes wheelScroll {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(12px);
-        opacity: 0;
-      }
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(12px); opacity: 0; }
     }
     /* ticker */
     .ticker {
@@ -464,12 +408,8 @@
       width: max-content;
     }
     @keyframes ticker {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-50%);
-      }
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
     .ticker-item {
       display: inline-flex;
@@ -484,72 +424,13 @@
       color: rgba(255, 255, 255, 0.9);
       white-space: nowrap;
     }
-    .ticker-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-    }
-    /* responsive utilities */
-    @media (max-width: 1000px) {
-      .nav-links {
-        gap: 18px;
-      }
-      .nav-brand-name {
-        font-size: 1rem;
-      }
-      .nav-brand-sub {
-        font-size: 0.5rem;
-      }
-    }
-    @media (max-width: 880px) {
-      .nav-links {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-      }
-      .hero-stats {
-        display: none;
-      }
-      .scroll-cue {
-        bottom: 100px;
-      }
-    }
-    @media (max-width: 768px) {
-      .hero h1 {
-        letter-spacing: -0.5px;
-      }
-      .hero-diagonal {
-        height: 70px;
-      }
-      .mobile-bar {
-        display: flex;
-      }
-      footer {
-        padding-bottom: 90px;
-      }
-      .float-wa {
-        display: none;
-      }
-      .services-grid,
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-      .about-right {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    /* other sections (kept compact but intact) */
-    .about-strip,
-    .services-section,
-    .feature-band,
-    .process-section,
-    .contact-section {
+    /* sections */
+    .section-eyebrow-line { display: inline-block; width: 28px; height: 2px; background: var(--rust); margin-right: 10px; }
+    .section-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .section-eyebrow-text { font-size: 0.7rem; letter-spacing: 2px; color: var(--rust-lite); font-weight: 600; }
+    .section-title-lg { font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-family: var(--f-display); font-weight: 800; margin-bottom: 24px; }
+    .about-strip, .services-section, .feature-band, .process-section, .contact-section, .gallery-section, .testimonial-strip, .article-content {
       padding: 70px 5%;
-    }
-    .section-title-lg {
-      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
     }
     .services-grid {
       display: grid;
@@ -562,44 +443,96 @@
       padding: 28px 24px;
       transition: all 0.3s var(--ease);
     }
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .about-card {
+      background: rgba(0,0,0,0.03);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .about-card-num { font-family: var(--f-display); font-size: 2.4rem; font-weight: 800; color: var(--amber); }
+    .about-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
     .feature-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
       align-items: center;
     }
-    @media (max-width: 900px) {
-      .feature-inner {
-        grid-template-columns: 1fr;
-      }
-      .about-strip {
-        grid-template-columns: 1fr;
-      }
-      .contact-inner {
-        grid-template-columns: 1fr;
-      }
+    .feature-visual { position: relative; }
+    .feature-badge-float {
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      background: var(--rust);
+      padding: 16px 20px;
+      border-radius: 18px;
+      color: white;
     }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .process-step {
+      background: white;
+      padding: 24px;
+      border-radius: 24px;
+    }
+    .step-num { font-size: 2rem; font-weight: 800; color: rgba(0,0,0,0.05); }
+    .testimonial-strip {
+      background: var(--rust);
+      text-align: center;
+      color: white;
+    }
+    .testimonial-strip blockquote { font-family: var(--f-display); font-size: 1.4rem; max-width: 800px; margin: 0 auto; }
     .gallery-section {
-      padding: 70px 0 70px 5%;
+      background: var(--ink);
+      color: white;
     }
     .slider-viewport {
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       cursor: grab;
       scrollbar-width: thin;
+      margin-top: 32px;
     }
     .slider-track {
       display: flex;
       gap: 20px;
       width: max-content;
+      transition: transform 0.4s var(--ease);
     }
     .slide {
       flex-shrink: 0;
-      width: 340px;
+      width: 320px;
       scroll-snap-align: start;
       border-radius: 18px;
       overflow: hidden;
+      background: #2a2a2a;
     }
+    .slide img { width: 100%; height: 220px; object-fit: cover; }
+    .slide-caption { padding: 12px; font-size: 0.85rem; text-align: center; background: rgba(0,0,0,0.5); }
+    .slider-dots { display: flex; gap: 8px; margin-top: 24px; justify-content: center; }
+    .s-dot { width: 24px; height: 3px; background: rgba(255,255,255,0.3); border-radius: 99px; cursor: pointer; }
+    .s-dot.active { background: var(--amber); width: 40px; }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .ci { display: flex; gap: 16px; align-items: center; margin-bottom: 24px; }
+    .ci-icon { width: 48px; height: 48px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--rust); }
+    .map-wrap iframe { width: 100%; height: 320px; border-radius: 24px; }
     .mobile-bar {
       display: none;
       position: fixed;
@@ -613,17 +546,7 @@
       z-index: 999;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .mb-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      color: var(--white);
-      font-size: 1.2rem;
-    }
-    .mb-btn small {
-      font-size: 0.55rem;
-    }
+    .mb-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--white); font-size: 1.2rem; }
     .float-wa {
       position: fixed;
       bottom: 24px;
@@ -640,14 +563,35 @@
       font-size: 1.4rem;
       box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     }
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    @media (max-width: 880px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-stats { display: none; }
+      .about-strip { grid-template-columns: 1fr; }
+      .feature-inner { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .mobile-bar { display: flex; }
+      .float-wa { bottom: 80px; }
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .article-content {
+      background: white;
+      margin-top: 20px;
+      border-radius: 32px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.03);
+    }
+    .article-text {
+      max-width: 880px;
+      margin: 0 auto;
+      color: #2c3e44;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+    @media (max-width: 780px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .about-right { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -680,7 +624,7 @@
 </div>
 
 <section class="hero" id="hero">
-  <div class="hero-media"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=90&w=2070&auto=format" alt="Ankara hafriyat" fetchpriority="high"></div>
+  <div class="hero-media"><img src="https://hakikatperest.github.io/guneshafriyat/images/haf1.webp" alt="Ankara hafriyat" fetchpriority="high"></div>
   <div class="hero-overlay"></div>
   <div class="hero-diagonal"></div>
   <div class="hero-content">
@@ -695,21 +639,23 @@
 
 <div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
 
-<section class="about-strip"><div class="about-left"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Biz Kimiz</span></div><h2 class="section-title-lg">Ankara'da <em>güvenilir</em><br>hafriyat partneri.</h2><p class="about-p">2013'ten bu yana Ankara ve çevresinde binlerce proje. ISO 9001 standartları, ücretsiz keşif ve modern ekipmanlarla fark yaratıyoruz.</p></div><div class="about-right"><div class="about-card"><div class="about-card-num">10+</div><div class="about-card-label">Yıl deneyim</div></div><div class="about-card"><div class="about-card-num">500+</div><div class="about-card-label">Tamamlanan proje</div></div><div class="about-card"><div class="about-card-num">12+</div><div class="about-card-label">İş makinesi</div></div><div class="about-card"><div class="about-card-num">7/24</div><div class="about-card-label">Acil müdahale</div></div></div></section>
+<section class="about-strip"><div class="about-left"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Biz Kimiz</span></div><h2 class="section-title-lg">Ankara'da <em>güvenilir</em><br>hafriyat partneri.</h2><p class="about-p">2013'ten bu yana Ankara ve çevresinde binlerce proje. ISO 9001 standartları, ücretsiz keşif ve modern ekipmanlarla fark yaratıyoruz. Güneş Hafriyat olarak her projede zamanında teslim ve işçilik garantisi sunuyoruz. Siz değerli müşterilerimize en uygun fiyat politikası ile kaliteli hizmet vermek en büyük hedefimizdir.</p></div><div class="about-right"><div class="about-card"><div class="about-card-num">10+</div><div class="about-card-label">Yıl deneyim</div></div><div class="about-card"><div class="about-card-num">500+</div><div class="about-card-label">Tamamlanan proje</div></div><div class="about-card"><div class="about-card-num">12+</div><div class="about-card-label">İş makinesi</div></div><div class="about-card"><div class="about-card-num">7/24</div><div class="about-card-label">Acil müdahale</div></div></div></section>
 
-<section class="services-section" id="hizmetler"><div class="services-header"><div><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Hizmetlerimiz</span></div><h2 class="section-title-lg">Kapsamlı <em>hafriyat çözümleri</em></h2></div><a href="tel:05532977256" class="cta-filled" style="background:var(--ink);color:white;padding:10px 24px;border-radius:99px;">Teklif Al →</a></div><div class="services-grid"><div class="svc-card"><div class="svc-icon-wrap">🏗️</div><h3>Hafriyat & Kazı</h3><p>Temel kazısı, dolgu, tesviye, parsel bazlı hafriyat.</p></div><div class="svc-card"><div class="svc-icon-wrap">🚜</div><h3>Kiralık Beko Loder</h3><p>Ekskavatör, kompaktör, günlük/proje bazlı kiralama.</p></div><div class="svc-card"><div class="svc-icon-wrap">💧</div><h3>Drenaj Sistemleri</h3><p>Yeraltı suyu tahliyesi, bahçe drenajı, kalıcı çözümler.</p></div><div class="svc-card"><div class="svc-icon-wrap">🔧</div><h3>Altyapı & Üstyapı</h3><p>Kanalizasyon, doğalgaz hattı, zemin iyileştirme.</p></div><div class="svc-card"><div class="svc-icon-wrap">⚙️</div><h3>Hidrolik Kırım</h3><p>Beton, kaya kazısı, yüksek güçlü kırıcılar.</p></div><div class="svc-card"><div class="svc-icon-wrap">🚛</div><h3>Nakliye & Moloz</h3><p>Ruhsatlı araçlarla hafriyat nakliyesi, dolgu malzemesi.</p></div></div></section>
+<section class="services-section" id="hizmetler"><div class="services-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;"><div><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Hizmetlerimiz</span></div><h2 class="section-title-lg">Kapsamlı <em>hafriyat çözümleri</em></h2></div><a href="tel:05532977256" class="cta-primary" style="background:var(--ink);">Teklif Al →</a></div><div class="services-grid"><div class="svc-card"><div class="svc-icon-wrap" style="font-size:2rem;">🏗️</div><h3>Hafriyat & Kazı</h3><p>Temel kazısı, dolgu, tesviye, parsel bazlı hafriyat.</p></div><div class="svc-card"><div class="svc-icon-wrap" style="font-size:2rem;">🚜</div><h3>Kiralık Beko Loder</h3><p>Ekskavatör, kompaktör, günlük/proje bazlı kiralama.</p></div><div class="svc-card"><div class="svc-icon-wrap" style="font-size:2rem;">💧</div><h3>Drenaj Sistemleri</h3><p>Yeraltı suyu tahliyesi, bahçe drenajı, kalıcı çözümler.</p></div><div class="svc-card"><div class="svc-icon-wrap" style="font-size:2rem;">🔧</div><h3>Altyapı & Üstyapı</h3><p>Kanalizasyon, doğalgaz hattı, zemin iyileştirme.</p></div><div class="svc-card"><div class="svc-icon-wrap" style="font-size:2rem;">⚙️</div><h3>Hidrolik Kırım</h3><p>Beton, kaya kazısı, yüksek güçlü kırıcılar.</p></div><div class="svc-card"><div class="svc-icon-wrap" style="font-size:2rem;">🚛</div><h3>Nakliye & Moloz</h3><p>Ruhsatlı araçlarla hafriyat nakliyesi, dolgu malzemesi.</p></div></div></section>
 
-<section class="feature-band"><div class="feature-inner"><div class="feature-visual"><div class="feature-img-main"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076&auto=format" alt="iş makinesi"></div><div class="feature-badge-float"><strong>%100</strong><span>Memnuniyet</span></div></div><div class="feature-text"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Neden Biz</span></div><h2 class="section-title-lg">Ankara'da <em>güvenilir</em> altyapı & drenaj.</h2><ul class="feature-check-list"><li>✓ ISO 9001 sertifikalı iş güvenliği</li><li>✓ Son teknoloji Caterpillar & Komatsu</li><li>✓ Aynı gün ekip sevkiyatı</li><li>✓ Belediye ruhsatlı nakliye</li><li>✓ Ücretsiz keşif & danışmanlık</li></ul><div class="feature-ctas"><a href="tel:05532977256" class="cta-filled">📞 Hemen Ara</a><a href="https://wa.me/905532977256" class="cta-wa">💬 WhatsApp Keşif</a></div></div></div></section>
+<section class="feature-band"><div class="feature-inner"><div class="feature-visual"><img src="https://hakikatperest.github.io/guneshafriyat/images/haf3.webp" alt="iş makinesi" style="border-radius: 28px; width:100%;"><div class="feature-badge-float"><strong>%100</strong><span> Memnuniyet</span></div></div><div class="feature-text"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Neden Biz</span></div><h2 class="section-title-lg">Ankara'da <em>güvenilir</em> altyapı & drenaj.</h2><ul class="feature-check-list" style="list-style:none; margin:20px 0;"><li>✓ ISO 9001 sertifikalı iş güvenliği</li><li>✓ Son teknoloji Caterpillar & Komatsu</li><li>✓ Aynı gün ekip sevkiyatı</li><li>✓ Belediye ruhsatlı nakliye</li><li>✓ Ücretsiz keşif & danışmanlık</li></ul><div class="feature-ctas"><a href="tel:05532977256" class="cta-primary">📞 Hemen Ara</a><a href="https://wa.me/905532977256" class="cta-primary" style="background:#25D366; margin-left:12px;">💬 WhatsApp Keşif</a></div></div></div></section>
 
-<section class="gallery-section" id="galeri"><div class="gallery-header"><div><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Projelerimiz</span></div><h2 class="section-title-lg" style="color:var(--white)">Sahadan <em style="color:var(--amber)">kareler</em></h2></div><div class="gallery-controls"><button class="gallery-btn" id="gPrev">←</button><button class="gallery-btn" id="gNext">→</button></div></div><div class="slider-viewport" id="sliderVP"><div class="slider-track" id="sliderTrack"></div></div><div class="slider-dots" id="sliderDots"></div></section>
+<section class="article-content"><div class="article-text"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Hafriyat Sektöründe Uzmanlık</span></div><h2 class="section-title-lg">Modern ekipmanlarla <em>kesintisiz hizmet</em></h2><p>Ankara'nın gelişen inşaat sektöründe Güneş Hafriyat, yılların tecrübesi ve genç dinamik kadrosuyla öne çıkıyor. Her türlü zemin koşulunda beko loder, ekskavatör ve kırıcı desteğiyle kazı, drenaj ve altyapı hizmetlerini zamanında tamamlıyoruz. Proje öncesi ücretsiz keşif ile en doğru ekipman seçimini yapıyor, şantiye sahasında iş güvenliğini ön planda tutuyoruz. Ayrıca hidrolik kırıcılarımız sayesinde sert zeminlerde dahi hızlı ilerleme sağlıyor, nakliye filosumuzla hafriyat atıklarını çevre mevzuatına uygun şekilde taşıyoruz.</p><br><p>Müşteri memnuniyetini esas alan çalışma anlayışımızla Ankara'nın tüm ilçelerinde hizmet vermekten gurur duyuyoruz. İvedik OSB, Yenimahalle, Sincan, Etimesgut, Çankaya ve Eryaman gibi bölgelerde referanslarımızla sektörde güvenilir bir adres haline geldik. Her türlü hafriyat ihtiyacınız için 7/24 ulaşabileceğiniz profesyonel destek.</p></div></section>
+
+<section class="gallery-section" id="galeri"><div><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Projelerimiz</span></div><h2 class="section-title-lg" style="color:var(--white)">Sahadan <em style="color:var(--amber)">kareler</em></h2></div><div class="slider-viewport" id="sliderVP"><div class="slider-track" id="sliderTrack"></div></div><div class="slider-dots" id="sliderDots"></div></section>
 
 <section class="process-section" id="neden-biz"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Nasıl Çalışıyoruz</span></div><h2 class="section-title-lg">4 adımda <em>proje teslimi</em></h2><div class="process-grid"><div class="process-step"><div class="step-num">01</div><h3>Ücretsiz Keşif</h3><p>Zemin etüdü ve teklif.</p></div><div class="process-step"><div class="step-num">02</div><h3>Planlama</h3><p>Makine seçimi & takvim.</p></div><div class="process-step"><div class="step-num">03</div><h3>Uygulama</h3><p>Deneyimli ekip ve raporlama.</p></div><div class="process-step"><div class="step-num">04</div><h3>Teslimat</h3><p>Garanti ve saha temizliği.</p></div></div></section>
 
 <div class="testimonial-strip"><blockquote>"Güneş Hafriyat ekibi temel kazısı ve drenaj hattını zamanında teslim etti. Ankara'da kalite."</blockquote><cite>— Mehmet Y., Yenimahalle</cite></div>
 
-<section class="contact-section" id="iletisim"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">İletişim</span></div><h2 class="section-title-lg">Projenizi konuşalım. <em>Ücretsiz.</em></h2><div class="contact-inner"><div class="contact-left"><div class="contact-items"><div class="ci"><div class="ci-icon">📞</div><div><div class="ci-label">Telefon</div><div class="ci-value"><a href="tel:05532977256">0553 297 72 56</a></div></div></div><div class="ci"><div class="ci-icon">💬</div><div><div class="ci-label">WhatsApp</div><div class="ci-value"><a href="https://wa.me/905532977256">0553 297 72 56</a></div></div></div><div class="ci"><div class="ci-icon">📍</div><div><div class="ci-label">Adres</div><div class="ci-value">Yenimahalle, İvedik OSB, Ankara</div></div></div></div><div class="contact-ctas"><a href="tel:05532977256" class="cta-call">📞 Hemen Ara</a><a href="https://wa.me/905532977256" class="cta-whatsapp">💬 WhatsApp Keşif</a></div></div><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195883.2891380386!2d32.63906440361388!3d39.92553356707985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f16bd1ca0f7%3A0x5c0c5c1e96c8e40f!2sAnkara!5e0!3m2!1str!2str!4v1743000000000!5m2!1str!2str" allowfullscreen loading="lazy"></iframe></div></div></section>
+<section class="contact-section" id="iletisim"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">İletişim</span></div><h2 class="section-title-lg">Projenizi konuşalım. <em>Ücretsiz.</em></h2><div class="contact-inner"><div class="contact-left"><div class="contact-items"><div class="ci"><div class="ci-icon">📞</div><div><div class="ci-label">Telefon</div><div class="ci-value"><a href="tel:05532977256">0553 297 72 56</a></div></div></div><div class="ci"><div class="ci-icon">💬</div><div><div class="ci-label">WhatsApp</div><div class="ci-value"><a href="https://wa.me/905532977256">0553 297 72 56</a></div></div></div><div class="ci"><div class="ci-icon">📍</div><div><div class="ci-label">Adres</div><div class="ci-value">Yenimahalle, İvedik OSB, Ankara</div></div></div></div><div class="contact-ctas" style="display:flex; gap:12px;"><a href="tel:05532977256" class="cta-primary">📞 Hemen Ara</a><a href="https://wa.me/905532977256" class="cta-primary" style="background:#25D366;">💬 WhatsApp Keşif</a></div></div><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195883.2891380386!2d32.63906440361388!3d39.92553356707985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f16bd1ca0f7%3A0x5c0c5c1e96c8e40f!2sAnkara!5e0!3m2!1str!2str!4v1743000000000!5m2!1str!2str" allowfullscreen loading="lazy"></iframe></div></div></section>
 
-<footer><div class="footer-top"><div><div class="footer-brand-name">GÜNEŞ HAFRİYAT</div><p>Ankara merkezli profesyonel hafriyat, kazı, drenaj ve altyapı firması.</p></div><div><div class="footer-heading">Hizmetler</div><ul class="footer-list"><li>Hafriyat & Kazı</li><li>Beko Loder Kiralama</li><li>Drenaj Sistemleri</li></ul></div><div><div class="footer-heading">İletişim</div><ul class="footer-list"><li>📞 <a href="tel:05532977256">0553 297 72 56</a></li><li>✉️ info@guneshafriyat.com.tr</li><li>💬 WhatsApp Destek</li></ul></div></div><hr class="footer-divider"><div class="footer-bottom"><p>© 2025 Güneş Hafriyat</p><p class="footer-seo">Ankara hafriyat · Kiralık beko loder · Drenaj · Altyapı</p></div></footer>
+<footer><div class="footer-top"><div><div class="footer-brand-name" style="font-family:var(--f-display); font-weight:800; font-size:1.3rem;">GÜNEŞ HAFRİYAT</div><p>Ankara merkezli profesyonel hafriyat, kazı, drenaj ve altyapı firması.</p></div><div><div class="footer-heading" style="font-weight:700;">Hizmetler</div><ul class="footer-list" style="list-style:none;"><li>Hafriyat & Kazı</li><li>Beko Loder Kiralama</li><li>Drenaj Sistemleri</li></ul></div><div><div class="footer-heading" style="font-weight:700;">İletişim</div><ul class="footer-list" style="list-style:none;"><li>📞 <a href="tel:05532977256">0553 297 72 56</a></li><li>✉️ info@guneshafriyat.com.tr</li><li>💬 WhatsApp Destek</li></ul></div></div><hr class="footer-divider" style="margin: 32px 0;"><div class="footer-bottom" style="display: flex; justify-content: space-between; flex-wrap:wrap;"><p>© 2025 Güneş Hafriyat</p><p class="footer-seo">Ankara hafriyat · Kiralık beko loder · Drenaj · Altyapı</p></div></footer>
 
 <div class="mobile-bar"><a href="tel:05532977256" class="mb-btn call">📞<small>Ara</small></a><a href="https://wa.me/905532977256" class="mb-btn wa">💬<small>WhatsApp</small></a><a href="#iletisim" class="mb-btn">📍<small>Konum</small></a></div>
 
@@ -719,7 +665,6 @@
   let mx = 0, my = 0, rx = 0, ry = 0;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
   function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); } animRing();
-  document.querySelectorAll('a, button').forEach(el => { el.addEventListener('mouseenter', () => { cur.style.width = '6px'; cur.style.height = '6px'; ring.style.width = '52px'; ring.style.height = '52px'; }); el.addEventListener('mouseleave', () => { cur.style.width = '10px'; cur.style.height = '10px'; ring.style.width = '38px'; ring.style.height = '38px'; }); });
   // navbar scroll
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
@@ -734,46 +679,28 @@
   const tickerList = ['Ankara Hafriyat', 'Beko Loder Kiralama', 'Temel Kazısı', 'Drenaj', 'Altyapı', 'Hidrolik Kırım', 'Moloz Nakliyesi', 'Ücretsiz Keşif', '7/24 Hizmet', '0553 297 72 56'];
   const tickTrack = document.getElementById('tickerTrack');
   if (tickTrack) { const itemsHtml = tickerList.map(t => `<span class="ticker-item"><span class="ticker-dot"></span>${t}</span>`).join(''); tickTrack.innerHTML = itemsHtml + itemsHtml; }
-  // gallery slider
-  const gallerySlides = [{ src: 'https://images.unsplash.com/photo-1581092335871-4a5b5b3ce4c2?q=80&w=1974', cap: 'Temel Kazısı' }, { src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076', cap: 'Drenaj Hattı' }, { src: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069', cap: 'Hidrolik Kırım' }, { src: 'https://images.unsplash.com/photo-1581092160562-40aa08e7882a?q=80&w=2070', cap: 'Altyapı' }, { src: 'https://images.unsplash.com/photo-1608490027867-05c6b95410aa?q=80&w=2070', cap: 'Beko Loder' }];
-  const sliderTrack = document.getElementById('sliderTrack'), dotsCont = document.getElementById('sliderDots'), prevBtn = document.getElementById('gPrev'), nextBtn = document.getElementById('gNext');
+  // gallery with local images
+  const gallerySlides = [
+    { src: 'https://hakikatperest.github.io/guneshafriyat/images/haf2.webp', cap: 'Temel Kazısı' },
+    { src: 'https://hakikatperest.github.io/guneshafriyat/images/haf4.webp', cap: 'Drenaj Hattı' },
+    { src: 'https://hakikatperest.github.io/guneshafriyat/images/haf5.webp', cap: 'Hidrolik Kırım' },
+    { src: 'https://hakikatperest.github.io/guneshafriyat/images/haf6.webp', cap: 'Altyapı' },
+    { src: 'https://hakikatperest.github.io/guneshafriyat/images/haf7.webp', cap: 'Beko Loder' },
+    { src: 'https://hakikatperest.github.io/guneshafriyat/images/haf8.webp', cap: 'Moloz Nakliyesi' },
+    { src: 'https://hakikatperest.github.io/guneshafriyat/images/haf9.webp', cap: 'Kazı Ekibi' },
+    { src: 'https://hakikatperest.github.io/guneshafriyat/images/haf10.webp', cap: 'İş Makinesi Filosu' }
+  ];
+  const sliderTrackEl = document.getElementById('sliderTrack'), dotsCont = document.getElementById('sliderDots');
   let currentIdx = 0;
-  gallerySlides.forEach((s, i) => { const div = document.createElement('div'); div.className = 'slide'; div.innerHTML = `<img src="${s.src}" alt="${s.cap}" loading="lazy"><div class="slide-caption">${s.cap}</div>`; sliderTrack.appendChild(div); const dot = document.createElement('div'); dot.className = 's-dot' + (i === 0 ? ' active' : ''); dot.addEventListener('click', () => goToSlide(i)); dotsCont.appendChild(dot); });
-  function goToSlide(idx) { currentIdx = Math.min(Math.max(0, idx), gallerySlides.length - 1); const slideW = document.querySelector('.slide')?.offsetWidth + 20 || 360; sliderTrack.style.transform = `translateX(-${currentIdx * slideW}px)`; document.querySelectorAll('.s-dot').forEach((d, i) => d.classList.toggle('active', i === currentIdx)); }
-  prevBtn.addEventListener('click', () => goToSlide(currentIdx - 1 < 0 ? gallerySlides.length - 1 : currentIdx - 1));
-  nextBtn.addEventListener('click', () => goToSlide(currentIdx + 1 >= gallerySlides.length ? 0 : currentIdx + 1));
+  gallerySlides.forEach((s, i) => { const div = document.createElement('div'); div.className = 'slide'; div.innerHTML = `<img src="${s.src}" alt="${s.cap}" loading="lazy"><div class="slide-caption">${s.cap}</div>`; sliderTrackEl.appendChild(div); const dot = document.createElement('div'); dot.className = 's-dot' + (i === 0 ? ' active' : ''); dot.addEventListener('click', () => goToSlide(i)); dotsCont.appendChild(dot); });
+  function goToSlide(idx) { currentIdx = Math.min(Math.max(0, idx), gallerySlides.length - 1); const slideW = document.querySelector('.slide')?.offsetWidth + 20 || 340; sliderTrackEl.style.transform = `translateX(-${currentIdx * slideW}px)`; document.querySelectorAll('.s-dot').forEach((d, i) => d.classList.toggle('active', i === currentIdx)); }
+  document.getElementById('gPrev')?.addEventListener('click', () => goToSlide(currentIdx - 1 < 0 ? gallerySlides.length - 1 : currentIdx - 1));
+  document.getElementById('gNext')?.addEventListener('click', () => goToSlide(currentIdx + 1 >= gallerySlides.length ? 0 : currentIdx + 1));
   setInterval(() => goToSlide((currentIdx + 1) % gallerySlides.length), 5000);
-  window.addEventListener('resize', () => { const slideW = document.querySelector('.slide')?.offsetWidth + 20 || 360; sliderTrack.style.transform = `translateX(-${currentIdx * slideW}px)`; });
-  setTimeout(() => { const slideW = document.querySelector('.slide')?.offsetWidth + 20 || 360; sliderTrack.style.transform = `translateX(-${currentIdx * slideW}px)`; }, 100);
-  // reveal
-  const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .about-card, .svc-card, .process-step').forEach(el => obs.observe(el));
+  window.addEventListener('resize', () => { const slideW = document.querySelector('.slide')?.offsetWidth + 20 || 340; sliderTrackEl.style.transform = `translateX(-${currentIdx * slideW}px)`; });
+  setTimeout(() => { const slideW = document.querySelector('.slide')?.offsetWidth + 20 || 340; sliderTrackEl.style.transform = `translateX(-${currentIdx * slideW}px)`; }, 100);
+  // smooth anchor
   document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
 </script>
-<style>
-  .section-eyebrow-line { display: inline-block; width: 28px; height: 2px; background: var(--rust); margin-right: 10px; }
-  .section-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-  .section-eyebrow-text { font-size: 0.7rem; letter-spacing: 2px; color: var(--rust-lite); font-weight: 600; }
-  .about-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 24px; }
-  .about-card-num { font-family: var(--f-display); font-size: 2.4rem; font-weight: 800; color: var(--amber); }
-  .feature-badge-float { position: absolute; bottom: -20px; right: -10px; background: var(--rust); padding: 16px 20px; border-radius: 18px; }
-  .cta-filled, .cta-wa { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 99px; font-weight: 700; transition: 0.2s; }
-  .cta-wa { background: #25D366; color: white; }
-  .testimonial-strip { background: var(--rust); padding: 60px 5%; text-align: center; color: white; }
-  .testimonial-strip blockquote { font-family: var(--f-display); font-size: 1.4rem; max-width: 800px; margin: 0 auto; }
-  .gallery-btn { background: rgba(255,255,255,0.1); border: none; width: 42px; height: 42px; border-radius: 50%; color: white; cursor: pointer; }
-  .slider-dots { display: flex; gap: 8px; margin-top: 24px; }
-  .s-dot { width: 24px; height: 3px; background: rgba(255,255,255,0.3); border-radius: 99px; cursor: pointer; }
-  .s-dot.active { background: var(--amber); width: 40px; }
-  .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 24px; margin-top: 40px; }
-  .process-step { background: white; padding: 24px; border-radius: 24px; }
-  .step-num { font-size: 2rem; font-weight: 800; color: rgba(0,0,0,0.05); }
-  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
-  .ci { display: flex; gap: 16px; align-items: center; margin-bottom: 24px; }
-  .ci-icon { width: 48px; height: 48px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--rust); }
-  .map-wrap iframe { width: 100%; height: 320px; border-radius: 24px; }
-  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
-  @media (max-width: 780px) { .footer-top { grid-template-columns: 1fr; } .contact-inner { grid-template-columns: 1fr; } .feature-badge-float { position: relative; margin-top: 20px; right: auto; } }
-</style>
 </body>
 </html>
