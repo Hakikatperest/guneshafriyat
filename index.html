@@ -233,7 +233,6 @@
         rgba(6,10,16,0.82) 100%
       );
     }
-    /* diagonal split accent */
     .hero-diagonal {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
       height: 140px;
@@ -308,7 +307,6 @@
       border-color: rgba(255,255,255,0.6);
       transform: translateY(-3px);
     }
-    /* hero stats strip */
     .hero-stats {
       position: absolute; bottom: 145px; right: 6%; z-index: 3;
       display: flex; flex-direction: column; gap: 20px;
@@ -326,7 +324,6 @@
       font-size: 0.7rem; letter-spacing: 2px;
       text-transform: uppercase; color: rgba(255,255,255,0.5);
     }
-    /* scroll indicator */
     .scroll-cue {
       position: absolute; bottom: 160px; left: 50%;
       transform: translateX(-50%); z-index: 3;
@@ -383,7 +380,6 @@
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: center;
     }
-    .about-left { }
     .section-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       margin-bottom: 20px;
@@ -596,10 +592,12 @@
       outline: none;
     }
     .gallery-btn:hover { background: var(--rust); border-color: var(--rust); }
-    /* Slider viewport */
     .slider-viewport {
-      overflow: hidden;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
       cursor: grab;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
     }
     .slider-viewport:active { cursor: grabbing; }
     .slider-track {
@@ -612,6 +610,7 @@
       width: 380px;
       border-radius: 18px; overflow: hidden;
       position: relative;
+      scroll-snap-align: start;
     }
     .slide img {
       width: 100%; aspect-ratio: 4/3; object-fit: cover;
@@ -630,7 +629,6 @@
       transition: all 0.3s;
     }
     .slide:hover .slide-caption { opacity: 1; transform: translateY(0); }
-    /* Progress dots */
     .slider-dots {
       display: flex; gap: 8px; margin-top: 32px; padding-right: 6%;
       justify-content: flex-end;
@@ -827,7 +825,6 @@
     .reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
     .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-    /* delay classes */
     .d1 { transition-delay: 0.1s; }
     .d2 { transition-delay: 0.2s; }
     .d3 { transition-delay: 0.3s; }
@@ -861,586 +858,106 @@
     @media (max-width: 500px) {
       .hero h1 { letter-spacing: -1px; }
       .about-right { grid-template-columns: 1fr 1fr; }
+      .slide { width: calc(100vw - 40px); }
     }
   </style>
 </head>
 <body>
 
-<!-- Cursor -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- Floating WA -->
-<a href="https://wa.me/905532977256?text=Merhaba%2C%20hafriyat%20hizmetleriniz%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="float-wa" aria-label="WhatsApp ile yaz">
-  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+<a href="https://wa.me/905532977256?text=Merhaba%2C%20hafriyat%20hizmetleriniz%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="float-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 
-<!-- NAVBAR -->
 <nav id="navbar">
-  <a href="#hero" class="nav-brand">
-    <span class="nav-brand-name">GÜNEŞ HAFRİYAT</span>
-    <span class="nav-brand-sub">Kazı · Altyapı · Nakliye · Ankara</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#hizmetler">Hizmetler</a></li>
-    <li><a href="#neden-biz">Neden Biz</a></li>
-    <li><a href="#galeri">Projeler</a></li>
-    <li><a href="#iletisim">İletişim</a></li>
-    <li><a href="tel:05532977256" class="nav-phone">📞 0553 297 72 56</a></li>
-  </ul>
+  <a href="#hero" class="nav-brand"><span class="nav-brand-name">GÜNEŞ HAFRİYAT</span><span class="nav-brand-sub">Kazı · Altyapı · Nakliye · Ankara</span></a>
+  <ul class="nav-links"><li><a href="#hizmetler">Hizmetler</a></li><li><a href="#neden-biz">Neden Biz</a></li><li><a href="#galeri">Projeler</a></li><li><a href="#iletisim">İletişim</a></li><li><a href="tel:05532977256" class="nav-phone">📞 0553 297 72 56</a></li></ul>
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
-
 <div class="m-overlay" id="mOverlay"></div>
-<div class="m-drawer" id="mDrawer">
-  <a href="#hizmetler">Hizmetler</a>
-  <a href="#neden-biz">Neden Biz</a>
-  <a href="#galeri">Projeler</a>
-  <a href="#iletisim">İletişim</a>
-  <a href="tel:05532977256" style="color:var(--amber)">📞 0553 297 72 56</a>
-</div>
+<div class="m-drawer" id="mDrawer"><a href="#hizmetler">Hizmetler</a><a href="#neden-biz">Neden Biz</a><a href="#galeri">Projeler</a><a href="#iletisim">İletişim</a><a href="tel:05532977256" style="color:var(--amber)">📞 0553 297 72 56</a></div>
 
-<!-- HERO -->
-<section class="hero" id="hero" aria-label="Güneş Hafriyat Ana Sayfa">
-  <div class="hero-media">
-    <img
-      src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=90&w=2070&auto=format"
-      alt="Ankara hafriyat kazı sahası – Güneş Hafriyat iş makineleri"
-      fetchpriority="high"
-    />
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-diagonal"></div>
-
+<section class="hero" id="hero">
+  <div class="hero-media"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=90&w=2070&auto=format" alt="Ankara hafriyat kazı sahası" fetchpriority="high"></div>
+  <div class="hero-overlay"></div><div class="hero-diagonal"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span class="hero-eyebrow-line"></span>
-      <span>Ankara'nın Güvenilir Hafriyat Firması</span>
-    </div>
+    <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span><span>Ankara'nın Güvenilir Hafriyat Firması</span></div>
     <h1>Toprak altından<br><em>üst yapıya</em><br>tam kontrol.</h1>
-    <p class="hero-desc">
-      Güneş Hafriyat olarak Ankara'da profesyonel kazı, drenaj, altyapı ve beko loder kiralama hizmetleri sunuyoruz.
-      Modern iş makinesi filosu, 10+ yıl deneyim ve zamanında teslimat garantisi.
-    </p>
-    <div class="hero-ctas">
-      <a href="tel:05532977256" class="cta-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        Hemen Ara
-      </a>
-      <a href="https://wa.me/905532977256" class="cta-ghost" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp'ta Yaz
-      </a>
-    </div>
+    <p class="hero-desc">Güneş Hafriyat olarak Ankara'da profesyonel kazı, drenaj, altyapı ve beko loder kiralama hizmetleri sunuyoruz. Modern iş makinesi filosu, 10+ yıl deneyim ve zamanında teslimat garantisi.</p>
+    <div class="hero-ctas"><a href="tel:05532977256" class="cta-primary">📞 Hemen Ara</a><a href="https://wa.me/905532977256" class="cta-ghost" target="_blank">💬 WhatsApp'ta Yaz</a></div>
   </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">10<span>+</span></div>
-      <div class="hero-stat-label">Yıl Tecrübe</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">500<span>+</span></div>
-      <div class="hero-stat-label">Tamamlanan Proje</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">7<span>/24</span></div>
-      <div class="hero-stat-label">Acil Destek</div>
-    </div>
-  </div>
-
-  <div class="scroll-cue" aria-hidden="true">
-    <div class="scroll-cue-wheel"><div class="scroll-cue-dot"></div></div>
-    <span>Kaydır</span>
-  </div>
+  <div class="hero-stats"><div class="hero-stat"><div class="hero-stat-num">10<span>+</span></div><div class="hero-stat-label">Yıl Tecrübe</div></div><div class="hero-stat"><div class="hero-stat-num">500<span>+</span></div><div class="hero-stat-label">Tamamlanan Proje</div></div><div class="hero-stat"><div class="hero-stat-num">7<span>/24</span></div><div class="hero-stat-label">Acil Destek</div></div></div>
+  <div class="scroll-cue"><div class="scroll-cue-wheel"><div class="scroll-cue-dot"></div></div><span>Kaydır</span></div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track" id="tickerTrack">
-    <!-- Duplicated for infinite scroll -->
-  </div>
-</div>
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="tickerTrack"></div></div>
 
-<!-- ABOUT STRIP -->
-<section class="about-strip" aria-label="Güneş Hafriyat hakkında">
-  <div class="about-left reveal-left">
-    <div class="section-eyebrow">
-      <span class="section-eyebrow-line"></span>
-      <span class="section-eyebrow-text">Biz Kimiz</span>
-    </div>
-    <h2 class="section-title-lg">Ankara'da <em>güvenilir</em><br>hafriyat partneri.</h2>
-    <p class="about-p">
-      2013'ten bu yana Ankara ve çevresinde bireysel, kurumsal ve kamusal projelere hizmet veriyoruz.
-      Modern Caterpillar ve Komatsu iş makineleri filosumuz, ISO 9001 standartlarında iş güvenliği anlayışımız
-      ve ücretsiz proje danışmanlığımızla sektörde fark yaratıyoruz.
-    </p>
-    <p class="about-p" style="margin-top:14px;">
-      Temel kazısından drenaj sistemlerine, beko loder kiralamadan moloz nakliyesine kadar
-      tüm hafriyat ihtiyaçlarınızda yanınızdayız.
-    </p>
-  </div>
-  <div class="about-right reveal-right">
-    <div class="about-card d1 reveal">
-      <div class="about-card-num">10+</div>
-      <div class="about-card-label">Yıllık sektör deneyimi</div>
-    </div>
-    <div class="about-card d2 reveal">
-      <div class="about-card-num">500+</div>
-      <div class="about-card-label">Başarıyla tamamlanan proje</div>
-    </div>
-    <div class="about-card d3 reveal">
-      <div class="about-card-num">12+</div>
-      <div class="about-card-label">Modern iş makinesi filomuz</div>
-    </div>
-    <div class="about-card d4 reveal">
-      <div class="about-card-num">7/24</div>
-      <div class="about-card-label">Acil müdahale hattı</div>
-    </div>
-  </div>
-</section>
+<section class="about-strip"><div class="about-left reveal-left"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Biz Kimiz</span></div><h2 class="section-title-lg">Ankara'da <em>güvenilir</em><br>hafriyat partneri.</h2><p class="about-p">2013'ten bu yana Ankara ve çevresinde bireysel, kurumsal ve kamusal projelere hizmet veriyoruz. Modern Caterpillar ve Komatsu iş makineleri filosumuz, ISO 9001 standartlarında iş güvenliği anlayışımız ve ücretsiz proje danışmanlığımızla sektörde fark yaratıyoruz.</p><p class="about-p" style="margin-top:14px;">Temel kazısından drenaj sistemlerine, beko loder kiralamadan moloz nakliyesine kadar tüm hafriyat ihtiyaçlarınızda yanınızdayız.</p></div><div class="about-right reveal-right"><div class="about-card d1 reveal"><div class="about-card-num">10+</div><div class="about-card-label">Yıllık sektör deneyimi</div></div><div class="about-card d2 reveal"><div class="about-card-num">500+</div><div class="about-card-label">Başarıyla tamamlanan proje</div></div><div class="about-card d3 reveal"><div class="about-card-num">12+</div><div class="about-card-label">Modern iş makinesi filomuz</div></div><div class="about-card d4 reveal"><div class="about-card-num">7/24</div><div class="about-card-label">Acil müdahale hattı</div></div></div></section>
 
-<!-- SERVICES -->
-<section class="services-section" id="hizmetler" aria-label="Hafriyat hizmetleri">
-  <div class="services-header">
-    <div class="reveal">
-      <div class="section-eyebrow">
-        <span class="section-eyebrow-line" style="background:var(--rust)"></span>
-        <span class="section-eyebrow-text">Hizmetlerimiz</span>
-      </div>
-      <h2 class="section-title-lg" style="color:var(--ink)">Yer altından üst yapıya<br><em>kapsamlı çözümler.</em></h2>
-    </div>
-    <a href="tel:05532977256" class="cta-filled reveal" style="height:fit-content; white-space:nowrap">
-      Teklif Al →
-    </a>
-  </div>
+<section class="services-section" id="hizmetler"><div class="services-header"><div class="reveal"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Hizmetlerimiz</span></div><h2 class="section-title-lg" style="color:var(--ink)">Yer altından üst yapıya<br><em>kapsamlı çözümler.</em></h2></div><a href="tel:05532977256" class="cta-filled reveal" style="height:fit-content; white-space:nowrap">Teklif Al →</a></div><div class="services-grid"><article class="svc-card reveal d1"><div class="svc-num">01</div><div class="svc-icon-wrap">🏗️</div><h3>Hafriyat & Kazı</h3><p>Parsel kazısı, temel hafriyatı, dolgu ve tesviye işlemleri. İnşaat öncesi zemin hazırlığı, proje planına uygun hassas kazı.</p><div class="svc-tags"><span class="svc-tag">Temel Kazısı</span><span class="svc-tag">Dolgu</span><span class="svc-tag">Tesviye</span></div></article><article class="svc-card reveal d2"><div class="svc-num">02</div><div class="svc-icon-wrap">🚜</div><h3>Kiralık Beko Loder</h3><p>Ankara'da beko loder, ekskavatör ve kompaktör kiralama. Saatlik, günlük veya proje bazlı esnek kiralama seçenekleri.</p><div class="svc-tags"><span class="svc-tag">Günlük Kiralama</span><span class="svc-tag">Ekskavatör</span><span class="svc-tag">Kompaktör</span></div></article><article class="svc-card reveal d3"><div class="svc-num">03</div><div class="svc-icon-wrap">💧</div><h3>Drenaj Sistemleri</h3><p>Yer altı suyu drenajı, bahçe drenajı, temel suyu tahliyesi. Yüzey suyu sorunlarına kalıcı mühendislik çözümleri.</p><div class="svc-tags"><span class="svc-tag">Bahçe Drenajı</span><span class="svc-tag">Temel Tahliyesi</span><span class="svc-tag">Su Yalıtımı</span></div></article><article class="svc-card reveal d1"><div class="svc-num">04</div><div class="svc-icon-wrap">🔧</div><h3>Altyapı & Üstyapı</h3><p>Kanalizasyon, yağmur suyu, doğalgaz hat kazıları. Zemin iyileştirme ve üstyapı stabilizasyonu projeleri.</p><div class="svc-tags"><span class="svc-tag">Kanalizasyon</span><span class="svc-tag">Doğalgaz Hattı</span><span class="svc-tag">Zemin İyileştirme</span></div></article><article class="svc-card reveal d2"><div class="svc-num">05</div><div class="svc-icon-wrap">⚙️</div><h3>Hidrolik & Mekanik Kazı</h3><p>Hidrolik kırıcı ile beton, kaya ve zorlu zemin kazısı. Yüksek güçlü makinelerle endüstriyel ve konut projeleri.</p><div class="svc-tags"><span class="svc-tag">Beton Kırım</span><span class="svc-tag">Kaya Kazısı</span><span class="svc-tag">Endüstriyel</span></div></article><article class="svc-card reveal d3"><div class="svc-num">06</div><div class="svc-icon-wrap">🚛</div><h3>Nakliye & Hafriyat Taşıma</h3><p>Hafriyat malzemesi ve moloz nakliyesi. Belediye ruhsatlı araçlarla Ankara genelinde hızlı dolgu malzemesi temini.</p><div class="svc-tags"><span class="svc-tag">Moloz Nakliye</span><span class="svc-tag">Dolgu Malzeme</span><span class="svc-tag">Ruhsatlı Araç</span></div></article></div></section>
 
-  <div class="services-grid">
-    <article class="svc-card reveal d1">
-      <div class="svc-num">01</div>
-      <div class="svc-icon-wrap">🏗️</div>
-      <h3>Hafriyat & Kazı</h3>
-      <p>Parsel kazısı, temel hafriyatı, dolgu ve tesviye işlemleri. İnşaat öncesi zemin hazırlığı, proje planına uygun hassas kazı.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Temel Kazısı</span>
-        <span class="svc-tag">Dolgu</span>
-        <span class="svc-tag">Tesviye</span>
-      </div>
-    </article>
-    <article class="svc-card reveal d2">
-      <div class="svc-num">02</div>
-      <div class="svc-icon-wrap">🚜</div>
-      <h3>Kiralık Beko Loder</h3>
-      <p>Ankara'da beko loder, ekskavatör ve kompaktör kiralama. Saatlik, günlük veya proje bazlı esnek kiralama seçenekleri.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Günlük Kiralama</span>
-        <span class="svc-tag">Ekskavatör</span>
-        <span class="svc-tag">Kompaktör</span>
-      </div>
-    </article>
-    <article class="svc-card reveal d3">
-      <div class="svc-num">03</div>
-      <div class="svc-icon-wrap">💧</div>
-      <h3>Drenaj Sistemleri</h3>
-      <p>Yer altı suyu drenajı, bahçe drenajı, temel suyu tahliyesi. Yüzey suyu sorunlarına kalıcı mühendislik çözümleri.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Bahçe Drenajı</span>
-        <span class="svc-tag">Temel Tahliyesi</span>
-        <span class="svc-tag">Su Yalıtımı</span>
-      </div>
-    </article>
-    <article class="svc-card reveal d1">
-      <div class="svc-num">04</div>
-      <div class="svc-icon-wrap">🔧</div>
-      <h3>Altyapı & Üstyapı</h3>
-      <p>Kanalizasyon, yağmur suyu, doğalgaz hat kazıları. Zemin iyileştirme ve üstyapı stabilizasyonu projeleri.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Kanalizasyon</span>
-        <span class="svc-tag">Doğalgaz Hattı</span>
-        <span class="svc-tag">Zemin İyileştirme</span>
-      </div>
-    </article>
-    <article class="svc-card reveal d2">
-      <div class="svc-num">05</div>
-      <div class="svc-icon-wrap">⚙️</div>
-      <h3>Hidrolik & Mekanik Kazı</h3>
-      <p>Hidrolik kırıcı ile beton, kaya ve zorlu zemin kazısı. Yüksek güçlü makinelerle endüstriyel ve konut projeleri.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Beton Kırım</span>
-        <span class="svc-tag">Kaya Kazısı</span>
-        <span class="svc-tag">Endüstriyel</span>
-      </div>
-    </article>
-    <article class="svc-card reveal d3">
-      <div class="svc-num">06</div>
-      <div class="svc-icon-wrap">🚛</div>
-      <h3>Nakliye & Hafriyat Taşıma</h3>
-      <p>Hafriyat malzemesi ve moloz nakliyesi. Belediye ruhsatlı araçlarla Ankara genelinde hızlı dolgu malzemesi temini.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Moloz Nakliye</span>
-        <span class="svc-tag">Dolgu Malzeme</span>
-        <span class="svc-tag">Ruhsatlı Araç</span>
-      </div>
-    </article>
-  </div>
-</section>
+<section class="feature-band"><div class="feature-inner"><div class="feature-visual reveal-left"><div class="feature-img-main"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076&auto=format" alt="Ankara drenaj altyapı kazısı" /></div><div class="feature-badge-float"><strong>%100</strong><span>Müşteri Memnuniyeti</span></div></div><div class="feature-text reveal-right"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Neden Güneş Hafriyat?</span></div><h2 class="section-title-lg" style="color:var(--ink)">Ankara'da <em>güvenilir</em><br>altyapı & drenaj.</h2><ul class="feature-check-list"><li><div class="check-icon">✓</div><div><strong>ISO 9001 sertifikalı iş güvenliği</strong> — Her sahada eksiksiz iş güvenliği protokolleri uygulanır.</div></li><li><div class="check-icon">✓</div><div><strong>Son teknoloji iş makineleri</strong> — Caterpillar ve Komatsu markalı modern makine filomuz.</div></li><li><div class="check-icon">✓</div><div><strong>Hızlı mobilizasyon</strong> — Ankara genelinde aynı gün ekip ve makine sevkiyatı.</div></li><li><div class="check-icon">✓</div><div><strong>Belediye ruhsatlı nakliye</strong> — Tüm hafriyat nakliyesi yasal izinlerle gerçekleştirilir.</div></li><li><div class="check-icon">✓</div><div><strong>Ücretsiz keşif & danışmanlık</strong> — Sahaya geliyor, yerinde ölçüm yapıyoruz.</div></li><li><div class="check-icon">✓</div><div><strong>7/24 acil hizmet hattı</strong> — Beklenmedik durumlarda anında müdahale.</div></li></ul><div class="feature-ctas"><a href="tel:05532977256" class="cta-filled">📞 Hemen Ara – 0553 297 72 56</a><a href="https://wa.me/905532977256" class="cta-wa" target="_blank">💬 Ücretsiz Keşif Talep Et</a></div></div></div></section>
 
-<!-- FEATURE BAND -->
-<section class="feature-band">
-  <div class="feature-inner">
-    <div class="feature-visual reveal-left">
-      <div class="feature-img-main">
-        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076&auto=format" alt="Ankara drenaj altyapı kazısı – Güneş Hafriyat" />
-      </div>
-      <div class="feature-badge-float">
-        <strong>%100</strong>
-        <span>Müşteri Memnuniyeti</span>
-      </div>
-    </div>
-    <div class="feature-text reveal-right">
-      <div class="section-eyebrow">
-        <span class="section-eyebrow-line" style="background:var(--rust)"></span>
-        <span class="section-eyebrow-text">Neden Güneş Hafriyat?</span>
-      </div>
-      <h2 class="section-title-lg" style="color:var(--ink)">Ankara'da <em>güvenilir</em><br>altyapı & drenaj.</h2>
-      <ul class="feature-check-list">
-        <li>
-          <div class="check-icon">✓</div>
-          <div><strong>ISO 9001 sertifikalı iş güvenliği</strong> — Her sahada eksiksiz iş güvenliği protokolleri uygulanır.</div>
-        </li>
-        <li>
-          <div class="check-icon">✓</div>
-          <div><strong>Son teknoloji iş makineleri</strong> — Caterpillar ve Komatsu markalı modern makine filomuz.</div>
-        </li>
-        <li>
-          <div class="check-icon">✓</div>
-          <div><strong>Hızlı mobilizasyon</strong> — Ankara genelinde aynı gün ekip ve makine sevkiyatı.</div>
-        </li>
-        <li>
-          <div class="check-icon">✓</div>
-          <div><strong>Belediye ruhsatlı nakliye</strong> — Tüm hafriyat nakliyesi yasal izinlerle gerçekleştirilir.</div>
-        </li>
-        <li>
-          <div class="check-icon">✓</div>
-          <div><strong>Ücretsiz keşif & danışmanlık</strong> — Sahaya geliyor, yerinde ölçüm yapıyoruz.</div>
-        </li>
-        <li>
-          <div class="check-icon">✓</div>
-          <div><strong>7/24 acil hizmet hattı</strong> — Beklenmedik durumlarda anında müdahale.</div>
-        </li>
-      </ul>
-      <div class="feature-ctas">
-        <a href="tel:05532977256" class="cta-filled">
-          📞 Hemen Ara – 0553 297 72 56
-        </a>
-        <a href="https://wa.me/905532977256" class="cta-wa" target="_blank">
-          💬 Ücretsiz Keşif Talep Et
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="gallery-section" id="galeri"><div class="gallery-header"><div class="reveal"><div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text" style="color:rgba(255,255,255,0.5)">Projelerimiz</span></div><h2 class="section-title-lg" style="color:var(--white)">Sahadan <em style="color:var(--amber)">kareler.</em></h2></div><div class="gallery-controls"><button class="gallery-btn" id="gPrev">←</button><button class="gallery-btn" id="gNext">→</button></div></div><div class="slider-viewport" id="sliderVP"><div class="slider-track" id="sliderTrack"></div></div><div class="slider-dots" id="sliderDots"></div></section>
 
-<!-- GALLERY -->
-<section class="gallery-section" id="galeri" aria-label="Güneş Hafriyat proje galerisi">
-  <div class="gallery-header">
-    <div class="reveal">
-      <div class="section-eyebrow">
-        <span class="section-eyebrow-line"></span>
-        <span class="section-eyebrow-text" style="color:rgba(255,255,255,0.5)">Projelerimiz</span>
-      </div>
-      <h2 class="section-title-lg" style="color:var(--white)">Sahadan <em style="color:var(--amber)">kareler.</em></h2>
-    </div>
-    <div class="gallery-controls" role="group" aria-label="Galeri navigasyonu">
-      <button class="gallery-btn" id="gPrev" aria-label="Önceki">←</button>
-      <button class="gallery-btn" id="gNext" aria-label="Sonraki">→</button>
-    </div>
-  </div>
-  <div class="slider-viewport" id="sliderVP">
-    <div class="slider-track" id="sliderTrack"></div>
-  </div>
-  <div class="slider-dots" id="sliderDots"></div>
-</section>
+<section class="process-section" id="neden-biz"><div class="section-header"><div class="section-eyebrow reveal"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Nasıl Çalışıyoruz</span></div><h2 class="section-title-lg reveal">4 adımda <em>proje teslimi.</em></h2></div><div class="process-grid"><div class="process-step reveal d1"><div class="step-connector"></div><div class="step-num">01</div><div class="step-icon">📋</div><h3>Ücretsiz Keşif</h3><p>Ekibimiz sahaya gelerek zemin etüdü yapar, projenizin kapsamını belirler ve ücretsiz teklif sunar.</p></div><div class="process-step reveal d2"><div class="step-connector"></div><div class="step-num">02</div><div class="step-icon">📐</div><h3>Planlama</h3><p>Mühendislik hesapları, makine seçimi ve iş takvimi planlanır. Güvenlik protokolleri belirlenir.</p></div><div class="process-step reveal d3"><div class="step-connector"></div><div class="step-num">03</div><div class="step-icon">🚜</div><h3>Uygulama</h3><p>Deneyimli ekiplerimiz ve son teknoloji makinelerimizle çalışmalar başlar. Günlük ilerleme raporu verilir.</p></div><div class="process-step reveal d4"><div class="step-num">04</div><div class="step-icon">✅</div><h3>Teslimat</h3><p>İş bitim raporu, saha temizliği ve müşteri kabul tutanağı ile proje tamamlanır. Garanti kapsamı başlar.</p></div></div></section>
 
-<!-- PROCESS / WHY -->
-<section class="process-section" id="neden-biz">
-  <div class="section-header" style="text-align:left">
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-line" style="background:var(--rust)"></span>
-      <span class="section-eyebrow-text">Nasıl Çalışıyoruz</span>
-    </div>
-    <h2 class="section-title-lg reveal" style="color:var(--ink)">4 adımda <em>proje teslimi.</em></h2>
-  </div>
-  <div class="process-grid">
-    <div class="process-step reveal d1">
-      <div class="step-connector"></div>
-      <div class="step-num">01</div>
-      <div class="step-icon">📋</div>
-      <h3>Ücretsiz Keşif</h3>
-      <p>Ekibimiz sahaya gelerek zemin etüdü yapar, projenizin kapsamını belirler ve ücretsiz teklif sunar.</p>
-    </div>
-    <div class="process-step reveal d2">
-      <div class="step-connector"></div>
-      <div class="step-num">02</div>
-      <div class="step-icon">📐</div>
-      <h3>Planlama</h3>
-      <p>Mühendislik hesapları, makine seçimi ve iş takvimi planlanır. Güvenlik protokolleri belirlenir.</p>
-    </div>
-    <div class="process-step reveal d3">
-      <div class="step-connector"></div>
-      <div class="step-num">03</div>
-      <div class="step-icon">🚜</div>
-      <h3>Uygulama</h3>
-      <p>Deneyimli ekiplerimiz ve son teknoloji makinelerimizle çalışmalar başlar. Günlük ilerleme raporu verilir.</p>
-    </div>
-    <div class="process-step reveal d4">
-      <div class="step-num">04</div>
-      <div class="step-icon">✅</div>
-      <h3>Teslimat</h3>
-      <p>İş bitim raporu, saha temizliği ve müşteri kabul tutanağı ile proje tamamlanır. Garanti kapsamı başlar.</p>
-    </div>
-  </div>
-</section>
+<div class="testimonial-strip"><blockquote>"Güneş Hafriyat ekibi inşaatımızın temel kazısını ve drenaj hattını zamanında, gürültüsüz teslim etti. Ankara'da bu kalitede hizmet bulmak gerçekten zordu."</blockquote><cite>— Mehmet Y., Yenimahalle İnşaat Projesi, Ankara</cite></div>
 
-<!-- TESTIMONIAL -->
-<div class="testimonial-strip">
-  <blockquote>
-    "Güneş Hafriyat ekibi inşaatımızın temel kazısını ve drenaj hattını zamanında, gürültüsüz teslim etti. Ankara'da bu kalitede hizmet bulmak gerçekten zordu."
-  </blockquote>
-  <cite>— Mehmet Y., Yenimahalle İnşaat Projesi, Ankara</cite>
-</div>
+<section class="contact-section" id="iletisim"><div class="section-eyebrow reveal"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">İletişim & Randevu</span></div><h2 class="section-title-lg reveal" style="margin-bottom:52px">Projenizi konuşalım. <em>Ücretsiz.</em></h2><div class="contact-inner"><div class="contact-left reveal-left"><div class="contact-items"><div class="ci"><div class="ci-icon">📍</div><div><div class="ci-label">Adres</div><div class="ci-value">Yenimahalle – İvedik OSB Bölgesi, Ankara</div></div></div><div class="ci"><div class="ci-icon">📞</div><div><div class="ci-label">Telefon</div><div class="ci-value"><a href="tel:05532977256">0553 297 72 56</a></div></div></div><div class="ci"><div class="ci-icon">💬</div><div><div class="ci-label">WhatsApp (7/24)</div><div class="ci-value"><a href="https://wa.me/905532977256" target="_blank">0553 297 72 56</a></div></div></div><div class="ci"><div class="ci-icon">✉️</div><div><div class="ci-label">E-posta</div><div class="ci-value"><a href="mailto:info@guneshafriyat.com.tr">info@guneshafriyat.com.tr</a></div></div></div><div class="ci"><div class="ci-icon">🕐</div><div><div class="ci-label">Çalışma Saatleri</div><div class="ci-value">Pzt–Cmt: 08:00–19:00 | Acil: 7/24</div></div></div></div><div class="contact-ctas"><a href="tel:05532977256" class="cta-call">📞 Hemen Ara – 0553 297 72 56</a><a href="https://wa.me/905532977256?text=Merhaba%2C%20hafriyat%20hizmetleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" class="cta-whatsapp">💬 WhatsApp – Ücretsiz Keşif</a></div></div><div class="map-wrap reveal-right"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195883.2891380386!2d32.63906440361388!3d39.92553356707985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f16bd1ca0f7%3A0x5c0c5c1e96c8e40f!2sAnkara!5e0!3m2!1str!2str!4v1743000000000!5m2!1str!2str" title="Güneş Hafriyat Ankara Konumu" allowfullscreen loading="lazy"></iframe></div></div></section>
 
-<!-- CONTACT -->
-<section class="contact-section" id="iletisim" aria-label="İletişim ve konum">
-  <div class="section-eyebrow reveal" style="margin-bottom:10px">
-    <span class="section-eyebrow-line" style="background:var(--rust)"></span>
-    <span class="section-eyebrow-text">İletişim & Randevu</span>
-  </div>
-  <h2 class="section-title-lg reveal" style="color:var(--ink);margin-bottom:52px">
-    Projenizi konuşalım. <em>Ücretsiz.</em>
-  </h2>
-  <div class="contact-inner">
-    <div class="contact-left reveal-left">
-      <div class="contact-items">
-        <div class="ci">
-          <div class="ci-icon">📍</div>
-          <div>
-            <div class="ci-label">Adres</div>
-            <div class="ci-value">Yenimahalle – İvedik OSB Bölgesi, Ankara</div>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="ci-icon">📞</div>
-          <div>
-            <div class="ci-label">Telefon</div>
-            <div class="ci-value"><a href="tel:05532977256">0553 297 72 56</a></div>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="ci-icon">💬</div>
-          <div>
-            <div class="ci-label">WhatsApp (7/24)</div>
-            <div class="ci-value"><a href="https://wa.me/905532977256" target="_blank" style="color:var(--rust)">0553 297 72 56</a></div>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="ci-icon">✉️</div>
-          <div>
-            <div class="ci-label">E-posta</div>
-            <div class="ci-value"><a href="mailto:info@guneshafriyat.com.tr" style="color:var(--rust)">info@guneshafriyat.com.tr</a></div>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="ci-icon">🕐</div>
-          <div>
-            <div class="ci-label">Çalışma Saatleri</div>
-            <div class="ci-value">Pzt–Cmt: 08:00–19:00 | Acil: 7/24</div>
-          </div>
-        </div>
-      </div>
-      <div class="contact-ctas">
-        <a href="tel:05532977256" class="cta-call">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Hemen Ara – 0553 297 72 56
-        </a>
-        <a href="https://wa.me/905532977256?text=Merhaba%2C%20hafriyat%20hizmetleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" class="cta-whatsapp">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          WhatsApp – Ücretsiz Keşif
-        </a>
-      </div>
-    </div>
-    <div class="map-wrap reveal-right">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195883.2891380386!2d32.63906440361388!3d39.92553356707985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f16bd1ca0f7%3A0x5c0c5c1e96c8e40f!2sAnkara!5e0!3m2!1str!2str!4v1743000000000!5m2!1str!2str"
-        title="Güneş Hafriyat Ankara Konumu"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </div>
-  </div>
-</section>
+<footer><div class="footer-top"><div><div class="footer-brand-name">GÜNEŞ HAFRİYAT</div><p class="footer-brand-desc">Ankara merkezli profesyonel hafriyat, kazı, drenaj ve altyapı firması. 2013'ten bu yana 500+ projeyi başarıyla tamamladık.</p></div><div><div class="footer-heading">Hizmetler</div><ul class="footer-list"><li>Hafriyat & Temel Kazısı</li><li>Kiralık Beko Loder Ankara</li><li>Drenaj Sistemleri</li><li>Altyapı & Üstyapı</li><li>Hidrolik Kırım</li><li><a href="#iletisim">Hafriyat Nakliyesi</a></li></ul></div><div><div class="footer-heading">İletişim</div><ul class="footer-list"><li>📞 <a href="tel:05532977256">0553 297 72 56</a></li><li>✉️ <a href="mailto:info@guneshafriyat.com.tr">info@guneshafriyat.com.tr</a></li><li>📍 Ankara, Türkiye</li><li><a href="https://wa.me/905532977256" target="_blank">💬 WhatsApp Destek</a></li></ul></div></div><hr class="footer-divider"><div class="footer-bottom"><p>© 2025 Güneş Hafriyat – Tüm hakları saklıdır.</p><p class="footer-seo">Ankara hafriyat · Kiralık beko loder Ankara · Drenaj işleri · Altyapı çalışmaları · Hafriyat nakliye</p></div></footer>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand-name">GÜNEŞ HAFRİYAT</div>
-      <p class="footer-brand-desc">
-        Ankara merkezli profesyonel hafriyat, kazı, drenaj ve altyapı firması.
-        2013'ten bu yana 500+ projeyi başarıyla tamamladık.
-      </p>
-    </div>
-    <div>
-      <div class="footer-heading">Hizmetler</div>
-      <ul class="footer-list">
-        <li>Hafriyat & Temel Kazısı</li>
-        <li>Kiralık Beko Loder Ankara</li>
-        <li>Drenaj Sistemleri</li>
-        <li>Altyapı & Üstyapı</li>
-        <li>Hidrolik Kırım</li>
-        <li><a href="#iletisim">Hafriyat Nakliyesi</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-heading">İletişim</div>
-      <ul class="footer-list">
-        <li>📞 <a href="tel:05532977256">0553 297 72 56</a></li>
-        <li>✉️ <a href="mailto:info@guneshafriyat.com.tr">info@guneshafriyat.com.tr</a></li>
-        <li>📍 Ankara, Türkiye</li>
-        <li><a href="https://wa.me/905532977256" target="_blank">💬 WhatsApp Destek</a></li>
-      </ul>
-    </div>
-  </div>
-  <hr class="footer-divider">
-  <div class="footer-bottom">
-    <p>© 2025 Güneş Hafriyat – Tüm hakları saklıdır.</p>
-    <p class="footer-seo">Ankara hafriyat · Kiralık beko loder Ankara · Drenaj işleri · Altyapı çalışmaları · Hafriyat nakliye</p>
-  </div>
-</footer>
-
-<!-- MOBILE BOTTOM BAR -->
-<div class="mobile-bar" role="navigation" aria-label="Hızlı iletişim">
-  <a href="tel:05532977256" class="mb-btn call">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-    <small>Ara</small>
-  </a>
-  <a href="https://wa.me/905532977256" class="mb-btn wa" target="_blank">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    <small>WhatsApp</small>
-  </a>
-  <a href="#iletisim" class="mb-btn">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <small>Konum</small>
-  </a>
-</div>
+<div class="mobile-bar"><a href="tel:05532977256" class="mb-btn call"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><small>Ara</small></a><a href="https://wa.me/905532977256" class="mb-btn wa" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><small>WhatsApp</small></a><a href="#iletisim" class="mb-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><small>Konum</small></a></div>
 
 <script>
-/* ── CURSOR ── */
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx=0, my=0, rx=0, ry=0;
-document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
-function animRing(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
-animRing();
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ cur.style.width='6px'; cur.style.height='6px'; ring.style.width='56px'; ring.style.height='56px'; });
-  el.addEventListener('mouseleave',()=>{ cur.style.width='10px'; cur.style.height='10px'; ring.style.width='38px'; ring.style.height='38px'; });
-});
+// cursor
+const cur=document.getElementById('cursor'), ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);} animRing();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.style.width='6px';cur.style.height='6px';ring.style.width='56px';ring.style.height='56px';});el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='38px';ring.style.height='38px';});});
 
-/* ── NAVBAR ── */
-const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+// navbar scroll
+const navBar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navBar.classList.toggle('scrolled',window.scrollY>50));
 
-/* ── MOBILE DRAWER ── */
-const ham = document.getElementById('hamburger');
-const drawer = document.getElementById('mDrawer');
-const overlay = document.getElementById('mOverlay');
-const openD = () => { ham.classList.add('open'); drawer.classList.add('open'); overlay.style.display='block'; setTimeout(()=>overlay.classList.add('open'),10); document.body.style.overflow='hidden'; };
-const closeD = () => { ham.classList.remove('open'); drawer.classList.remove('open'); overlay.classList.remove('open'); setTimeout(()=>overlay.style.display='none',350); document.body.style.overflow=''; };
-ham.addEventListener('click', () => drawer.classList.contains('open') ? closeD() : openD());
-overlay.addEventListener('click', closeD);
-document.querySelectorAll('.m-drawer a').forEach(a => a.addEventListener('click', closeD));
+// mobile drawer
+const ham=document.getElementById('hamburger'),drawer=document.getElementById('mDrawer'),overlayM=document.getElementById('mOverlay');
+function openDrawer(){ham.classList.add('open');drawer.classList.add('open');overlayM.style.display='block';setTimeout(()=>overlayM.classList.add('open'),10);document.body.style.overflow='hidden';}
+function closeDrawer(){ham.classList.remove('open');drawer.classList.remove('open');overlayM.classList.remove('open');setTimeout(()=>overlayM.style.display='none',350);document.body.style.overflow='';}
+ham.addEventListener('click',()=>drawer.classList.contains('open')?closeDrawer():openDrawer());
+overlayM.addEventListener('click',closeDrawer);
+document.querySelectorAll('.m-drawer a').forEach(a=>a.addEventListener('click',closeDrawer));
 
-/* ── TICKER ── */
-const tickerItems = [
-  'Ankara Hafriyat', 'Beko Loder Kiralama', 'Temel Kazısı',
-  'Drenaj Sistemleri', 'Altyapı Çalışmaları', 'Hidrolik Kırım',
-  'Moloz Nakliyesi', 'Ücretsiz Keşif', '7/24 Hizmet',
-  '0553 297 72 56', 'Yenimahalle · Ankara'
-];
-const track = document.getElementById('tickerTrack');
-if(track){
-  const makeItems = () => tickerItems.map(t=>`<span class="ticker-item"><span class="ticker-dot"></span>${t}</span>`).join('');
-  track.innerHTML = makeItems() + makeItems();
-}
+// ticker
+const tickerItems=['Ankara Hafriyat','Beko Loder Kiralama','Temel Kazısı','Drenaj Sistemleri','Altyapı Çalışmaları','Hidrolik Kırım','Moloz Nakliyesi','Ücretsiz Keşif','7/24 Hizmet','0553 297 72 56','Yenimahalle · Ankara'];
+const tickTrack=document.getElementById('tickerTrack');
+if(tickTrack){const mk=()=>tickerItems.map(t=>`<span class="ticker-item"><span class="ticker-dot"></span>${t}</span>`).join('');tickTrack.innerHTML=mk()+mk();}
 
-/* ── SLIDER ── */
-const slides = [
-  { src: 'https://images.unsplash.com/photo-1581092335871-4a5b5b3ce4c2?q=80&w=1974', cap: 'Temel Kazısı – Etimesgut, Ankara' },
-  { src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076', cap: 'Drenaj Hattı Uygulaması' },
-  { src: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069', cap: 'Hidrolik Kırım – Yenimahalle' },
-  { src: 'https://images.unsplash.com/photo-1581092160562-40aa08e7882a?q=80&w=2070', cap: 'Altyapı Hattı Döşemesi' },
-  { src: 'https://images.unsplash.com/photo-1608490027867-05c6b95410aa?q=80&w=2070', cap: 'Beko Loder – Günlük Kiralama' },
-  { src: 'https://images.unsplash.com/photo-1622540535242-5cd217eb0af7?q=80&w=2070', cap: 'Hafriyat Nakliyesi' },
-  { src: 'https://images.unsplash.com/photo-1542704792-e30dac463c90?q=80&w=1974', cap: 'Zemin İyileştirme Projesi' },
-];
+// gallery slider
+const slidesData=[{src:'https://images.unsplash.com/photo-1581092335871-4a5b5b3ce4c2?q=80&w=1974',cap:'Temel Kazısı – Etimesgut, Ankara'},{src:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076',cap:'Drenaj Hattı Uygulaması'},{src:'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069',cap:'Hidrolik Kırım – Yenimahalle'},{src:'https://images.unsplash.com/photo-1581092160562-40aa08e7882a?q=80&w=2070',cap:'Altyapı Hattı Döşemesi'},{src:'https://images.unsplash.com/photo-1608490027867-05c6b95410aa?q=80&w=2070',cap:'Beko Loder – Günlük Kiralama'},{src:'https://images.unsplash.com/photo-1622540535242-5cd217eb0af7?q=80&w=2070',cap:'Hafriyat Nakliyesi'},{src:'https://images.unsplash.com/photo-1542704792-e30dac463c90?q=80&w=1974',cap:'Zemin İyileştirme Projesi'}];
+const sliderTrack=document.getElementById('sliderTrack'),dotsCont=document.getElementById('sliderDots'),prevBtn=document.getElementById('gPrev'),nextBtn=document.getElementById('gNext');
+let currentSlide=0;
+slidesData.forEach((s,i)=>{const div=document.createElement('div');div.className='slide';div.innerHTML=`<img src="${s.src}" alt="${s.cap}" loading="lazy"><div class="slide-caption">${s.cap}</div>`;sliderTrack.appendChild(div);const dot=document.createElement('div');dot.className='s-dot'+(i===0?' active':'');dot.addEventListener('click',()=>goToSlide(i));dotsCont.appendChild(dot);});
+function goToSlide(idx){currentSlide=Math.max(0,Math.min(idx,slidesData.length-1));const slideW=document.querySelector('.slide')?.offsetWidth+20||400;sliderTrack.style.transform=`translateX(-${currentSlide*slideW}px)`;document.querySelectorAll('.s-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));}
+prevBtn.addEventListener('click',()=>goToSlide(currentSlide>0?currentSlide-1:slidesData.length-1));
+nextBtn.addEventListener('click',()=>goToSlide(currentSlide<slidesData.length-1?currentSlide+1:0));
+setInterval(()=>goToSlide(currentSlide<slidesData.length-1?currentSlide+1:0),5000);
+let startX=0;const vp=document.getElementById('sliderVP');
+vp.addEventListener('mousedown',e=>{startX=e.clientX;vp.style.cursor='grabbing';});
+window.addEventListener('mouseup',e=>{if(startX){const diff=startX-e.clientX;if(Math.abs(diff)>50)diff>0?nextBtn.click():prevBtn.click();startX=0;vp.style.cursor='grab';}});
+vp.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+vp.addEventListener('touchend',e=>{if(startX){const diff=startX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)diff>0?nextBtn.click():prevBtn.click();startX=0;}});
+window.addEventListener('resize',()=>{const slideW=document.querySelector('.slide')?.offsetWidth+20||400;sliderTrack.style.transform=`translateX(-${currentSlide*slideW}px)`;});
+setTimeout(()=>{const slideW=document.querySelector('.slide')?.offsetWidth+20||400;sliderTrack.style.transform=`translateX(-${currentSlide*slideW}px)`;},100);
 
-const sliderTrack = document.getElementById('sliderTrack');
-const dotsContainer = document.getElementById('sliderDots');
-const prevBtn = document.getElementById('gPrev');
-const nextBtn = document.getElementById('gNext');
+// reveal on scroll
+const revealObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.12});
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el=>revealObs.observe(el));
 
-slides.forEach((s,i) => {
-  const el = document.createElement('div');
-  el.className = 'slide';
-  el.innerHTML = `<img src="${s.src}" alt="${s.cap}" loading="lazy"><div class="slide-caption">${s.cap}</div>`;
-  sliderTrack.appendChild(el);
-
-  const dot = document.createElement('div');
-  dot.className = 's-dot' + (i===0?' active':'');
-  dot.addEventListener('click', () => goTo(i));
-  dotsContainer.appendChild(dot);
-});
-
-const SLIDE_W = 400; // slide width + gap
-let current = 0;
-const total = slides.length;
-
-function goTo(idx) {
-  current = Math.max(0, Math.min(idx, total-1));
-  sliderTrack.style.transform = `translateX(-${current * SLIDE_W}px)`;
-  document.querySelectorAll('.s-dot').forEach((d,i) => d.classList.toggle('active', i===current));
-}
-
-prevBtn.addEventListener('click', () => goTo(current > 0 ? current-1 : total-1));
-nextBtn.addEventListener('click', () => goTo(current < total-1 ? current+1 : 0));
-
-// Auto-advance
-setInterval(() => goTo(current < total-1 ? current+1 : 0), 4500);
-
-// Drag / touch support
-let startX = 0, isDragging = false;
-const vp = document.getElementById('sliderVP');
-vp.addEventListener('mousedown', e => { startX=e.clientX; isDragging=true; });
-window.addEventListener('mouseup', e => { if(isDragging){ const diff=startX-e.clientX; if(Math.abs(diff)>50) diff>0?goTo(current+1):goTo(current-1); isDragging=false; } });
-vp.addEventListener('touchstart', e => { startX=e.touches[0].clientX; }, {passive:true});
-vp.addEventListener('touchend', e => { const diff=startX-e.changedTouches[0].clientX; if(Math.abs(diff)>50) diff>0?goTo(current+1):goTo(current-1); });
-
-/* ── REVEAL ON SCROLL ── */
-const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
-reveals.forEach(el => observer.observe(el));
-
-/* ── SMOOTH SCROLL ── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if(t){ e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
-  });
-});
+// smooth anchor
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
 </script>
 </body>
 </html>
