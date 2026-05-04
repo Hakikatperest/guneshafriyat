@@ -11,6 +11,7 @@
   <meta property="og:title" content="Güneş Hafriyat | Hafriyat, Altyapı, Drenaj & Kiralık Hizmetler Ankara" />
   <meta property="og:description" content="Ankara'da güvenilir hafriyat işleri, kiralık cisim, altyapı üstyapı, drenaj ve nakliye çözümleri. 7/24 hizmet." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/haf1.webp" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -162,6 +163,7 @@
     }
     .hero-video-wrap {
       position: absolute; inset: 0; z-index: 0;
+      background: var(--black);
     }
     .hero-video-wrap video {
       width: 100%; height: 100%; object-fit: cover;
@@ -323,7 +325,7 @@
     .astat-num { font-family: var(--f-head); font-size: 2rem; font-weight: 900; color: var(--yellow); }
     .astat-label { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 1px; margin-top: 4px; }
 
-    /* ── SERVICES (güncellendi, yıkım çıkarıldı, yeni hizmetler eklendi) ── */
+    /* ── SERVICES ── */
     .services-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 56px; }
     .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
     .svc-card {
@@ -540,9 +542,8 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-video-wrap">
-    <video autoplay muted loop playsinline preload="auto" poster="https://hakikatperest.github.io/guneshafriyat/images/haf1.webp">
-      <source src="https://hakikatperest.github.io/guneshafriyat/images/arkaplan.mp4" type="video/mp4" />
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/haf1.webp" alt="Ankara hafriyat işleri" />
+    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="images/haf1.webp">
+      <source src="videos/arkaplan%2023.16.04.mp4" type="video/mp4" />
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -581,8 +582,8 @@
 <section class="section section-dark" id="hakkimizda">
   <div class="about-grid">
     <div class="about-img-wrap fade-up">
-      <img class="about-img-main" src="https://hakikatperest.github.io/guneshafriyat/images/kaya1.webp" alt="Güneş Hafriyat ekipman filosu" loading="lazy" />
-      <img class="about-accent-img" src="https://hakikatperest.github.io/guneshafriyat/images/kaya2.webp" alt="kazı çalışmaları" loading="lazy" />
+      <img class="about-img-main" src="images/haf2.webp" alt="Güneş Hafriyat ekipman filosu" loading="lazy" />
+      <img class="about-accent-img" src="images/haf3.webp" alt="kazı çalışmaları" loading="lazy" />
       <div class="about-badge"><div class="about-badge-num">2013</div><div class="about-badge-text">Kuruluş Yılı</div></div>
     </div>
     <div class="about-text fade-up fade-up-d2">
@@ -600,7 +601,7 @@
   </div>
 </section>
 
-<!-- HİZMETLER (yıkım çıkarıldı, yeni alanlar eklendi) -->
+<!-- HİZMETLER -->
 <section class="section" id="hizmetler">
   <div class="services-header">
     <div>
@@ -664,35 +665,35 @@
   </div>
   <div class="gallery-masonry">
     <div class="g-item tall fade-up fade-up-d1">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/haf1.webp" alt="hafriyat hizmeti ankara" loading="lazy" />
+      <img src="images/haf1.webp" alt="hafriyat hizmeti ankara" loading="lazy" />
       <div class="g-caption"><span>Temel Kazısı</span></div>
     </div>
     <div class="g-item fade-up fade-up-d2">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/drenaj.webp" alt="drenaj hattı" loading="lazy" />
+      <img src="images/haf4.webp" alt="drenaj hattı" loading="lazy" />
       <div class="g-caption"><span>Drenaj Yapılması ve Çevre Düzenlemesi</span></div>
     </div>
     <div class="g-item fade-up fade-up-d3">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/hidrolik.webp" alt="hidrolik kırım" loading="lazy" />
+      <img src="images/haf5.webp" alt="hidrolik kırım" loading="lazy" />
       <div class="g-caption"><span>Hidrolik Kırım</span></div>
     </div>
     <div class="g-item fade-up fade-up-d4">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/altyapi.webp" alt="altyapı kazısı" loading="lazy" />
+      <img src="images/haf6.webp" alt="altyapı kazısı" loading="lazy" />
       <div class="g-caption"><span>Altyapı Kazısı</span></div>
     </div>
     <div class="g-item wide fade-up fade-up-d2">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/beko.webp" alt="beko loder kiralama" loading="lazy" />
+      <img src="images/haf7.webp" alt="beko loder kiralama" loading="lazy" />
       <div class="g-caption"><span>Beko Loder & Nakliye</span></div>
     </div>
     <div class="g-item fade-up fade-up-d3">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/haf8.webp" alt="indirmesi bindirmesi nakliyesi" loading="lazy" />
+      <img src="images/haf8.webp" alt="indirmesi bindirmesi nakliyesi" loading="lazy" />
       <div class="g-caption"><span>Nakliye Hizmeti</span></div>
     </div>
     <div class="g-item fade-up fade-up-d1">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/kazici1.webp" alt="kazı ekibi ankara" loading="lazy" />
+      <img src="images/haf9.webp" alt="kazı ekibi ankara" loading="lazy" />
       <div class="g-caption"><span>Kazı Ekibi</span></div>
     </div>
     <div class="g-item fade-up fade-up-d4">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/kazici2.webp" alt="iş makinesi filosu" loading="lazy" />
+      <img src="images/haf10.webp" alt="iş makinesi filosu" loading="lazy" />
       <div class="g-caption"><span>Makine Filosu</span></div>
     </div>
   </div>
@@ -702,7 +703,7 @@
 <section class="section section-dark" id="neden-biz">
   <div class="why-grid">
     <div class="why-img fade-up">
-      <img src="https://hakikatperest.github.io/guneshafriyat/images/kaya3.webp" alt="güvenilir hafriyat firması" loading="lazy" />
+      <img src="images/haf6.webp" alt="güvenilir hafriyat firması" loading="lazy" />
       <div class="why-overlay-card">
         <strong>7/24</strong>
         <span>Hızlı Çözüm</span>
@@ -724,7 +725,7 @@
 <!-- PROCESS -->
 <section class="section" id="nasil-calisiyoruz">
   <div style="text-align:center; max-width: 600px; margin: 0 auto 0;">
-    <div class="eyebrow" style="justify-content:center;" class="fade-up"><div class="eyebrow-line"></div><span class="eyebrow-text">Nasıl Çalışıyoruz</span></div>
+    <div class="eyebrow fade-up" style="justify-content:center;"><div class="eyebrow-line"></div><span class="eyebrow-text">Nasıl Çalışıyoruz</span></div>
     <h2 class="section-title fade-up fade-up-d1">4 adımda <span style="color:var(--yellow)">proje teslimi</span></h2>
   </div>
   <div class="process-steps">
@@ -779,6 +780,27 @@
   let tx = 0, ty = 0, cx = 0, cy = 0;
   document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; cur.style.left = tx + 'px'; cur.style.top = ty + 'px'; });
   (function animTrail() { cx += (tx - cx) * 0.1; cy += (ty - cy) * 0.1; trail.style.left = cx + 'px'; trail.style.top = cy + 'px'; requestAnimationFrame(animTrail); })();
+
+  // Hero video — iOS/Android otomatik oynatma garantisi
+  (function ensureHeroAutoplay() {
+    const v = document.getElementById('heroVideo');
+    if (!v) return;
+    v.muted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    const tryPlay = () => {
+      const p = v.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch(() => {
+          // Tarayıcı ilk etkileşimi bekliyorsa, ilk dokunuşta tekrar dene
+          const once = () => { v.play().catch(() => {}); document.removeEventListener('touchstart', once); document.removeEventListener('click', once); };
+          document.addEventListener('touchstart', once, { once: true, passive: true });
+          document.addEventListener('click', once, { once: true });
+        });
+      }
+    };
+    if (v.readyState >= 2) tryPlay(); else v.addEventListener('loadeddata', tryPlay, { once: true });
+  })();
 
   // Navbar scroll
   const navbar = document.getElementById('navbar');
